@@ -26,7 +26,7 @@ class CustomUserChangeForm(UserChangeForm):
     )
     class Meta(UserChangeForm):
         model = get_user_model()
-        fields = ('profile_image',)
+        fields = ( 'email','username','profile_image',)
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
