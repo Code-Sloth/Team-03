@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Detail</h1>
+  <hr>
+  {{ request.user.username }}
+  {{ request.user.email }}
+  {% if request.user.profile_image %}
+    <img src="{{ request.user.profile_image.url }}" alt="{{ request.user.username }}">
+  {% endif %}
+{% endblock content %}
