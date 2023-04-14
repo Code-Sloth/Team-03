@@ -27,6 +27,39 @@
       opacity: 1;
     }
 
+    .accounts-sign input[type="submit"], .accounts-sign .update-a {
+      margin-top: 100px;
+      width: 100%;
+      background: rgb(59 72 105);
+      border: none;
+      height: 50px;
+    }
+  
+    .accounts-sign label {
+      color: rgb(189 198 213);
+    }
+  
+    .accounts-sign input:not([type="submit"]) {
+      background-color: rgb(23 32 54);
+      border: 1px solid rgb(37 48 74);
+      color: white;
+      height: 50px;
+    }
+    
+    .accounts-sign input:not([type="submit"]):focus {
+      background-color: rgb(23 32 54);
+      color: white;
+    }
+  
+    .accounts-sign input:not([type="submit"])::placeholder {
+      color: rgb(189 198 213);
+    }
+
+    .accounts-sign div {
+      margin-bottom: 20px;
+      color: gray;
+    }
+
     {% block style %}
     {% endblock style %}
   </style>
@@ -65,14 +98,14 @@
     </div>
   </nav>
   
-  <div class='container sticky-top w-50 text-center text-white p-3'>
+  <div class='container sticky-top w-50 text-center text-white p-3' style="background-color: rgb(16 19 34);">
     <h2>
       {% block title %}
       {% endblock title %}
     </h2>
   </div>
 
-  <div class='container w-50 text-white'>
+  <div class='container w-50 text-white' style='margin-bottom:100px;'>
     {% block content %}
     {% endblock content %}
   </div>
