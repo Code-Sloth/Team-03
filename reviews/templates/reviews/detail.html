@@ -17,25 +17,35 @@
 
 
   {% for comment in comments %}
+
   <p> {{ comment.user }} - {{ comment.content }}</p>
-  <form action="{% url 'reviews:comment_delete' review.pk comment.pk %}" method="post">
-    {% csrf_token %}
-    <input type="submit" value="댓글삭제">
-  </form>
+
+  {% if request.user == comment.user %}
+
+    <form action="{% url 'reviews:comment_delete' review.pk comment.pk %}" method="post">
+      {% csrf_token %}
+      <input type="submit" value="댓글삭제">
+    </form>
+
+  {% endif %}
   {% endfor %}
 
   <form action="{% url 'reviews:comment_create' review.pk %}" method="post">
     {% csrf_token %}
     {{ comment_form }}
-    <input type="submit" value="댓글작성">
+    <input type="submit" value="댓글작성" {% if request.user.is_anonymous %}disabled{% endif %}>
   </form>
 
+  {% if request.user == review.user %}
   
+    <form action="{% url 'reviews:delete' review.pk %}" method="POST">
+      {% csrf_token %}
+      <button class='btn btn-primary' type="submit">삭제</button>
+    </form>
+    <a class='btn btn-primary' href="{% url 'reviews:update' review.pk %}">수정</a>
 
-  <form action="{% url 'reviews:delete' review.pk %}" method="POST">
-    {% csrf_token %}
-    <button class='btn btn-primary' type="submit">삭제</button>
-  </form>
-  <a class='btn btn-primary' href="{% url 'reviews:update' review.pk %}">수정</a>
-  <form action=""></form>
+  {% endif %}
+
+  <a class='btn btn-primary' href="{% url 'reviews:index' %}">메인</a>
+
 {% endblock content %}
