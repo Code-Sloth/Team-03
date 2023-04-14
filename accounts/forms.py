@@ -33,10 +33,16 @@ class CustomUserChangeForm(UserChangeForm):
 
         self.fields['profile_image'].widget.attrs['class'] = 'form-control my-3'
 
+        self.fields['email'].widget.attrs['class'] = 'form-control my-3'
+
+        self.fields['username'].widget.attrs['class'] = 'form-control my-3'
+
 class CustomUserAuthenticationForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.fields['username'].widget.attrs['class'] = 'form-control my-3'
+        self.fields['username'].widget.attrs['placeholder'] = '아이디 입력'
 
         self.fields['password'].widget.attrs['class'] = 'form-control my-3'
+        self.fields['password'].widget.attrs['placeholder'] = '8자 이상 입력 (문자/숫자/기호 사용 가능)'
