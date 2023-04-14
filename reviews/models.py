@@ -5,7 +5,7 @@ import os
 # Create your models here.
 class Review(models.Model):
     title = models.CharField(max_length=80)
-    content = models.CharField(max_length=80)
+    content = models.TextField()
     movie = models.CharField(max_length=80)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     
@@ -27,3 +27,11 @@ class Review(models.Model):
                 if old_post.image:
                     os.remove(os.path.join(settings.MEDIA_ROOT, old_post.image.path))
         super(Review, self).save(*args, **kwargs)
+
+
+class Comment(models.Model):
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content = models.CharField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

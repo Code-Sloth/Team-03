@@ -14,9 +14,28 @@
   </div>
   <p>{{ review.created_time }}</p>
   <p>{{ review.updated_time }}</p>
+
+
+  {% for comment in comments %}
+  <p> {{ comment.user }} - {{ comment.content }}</p>
+  <form action="{% url 'reviews:comment_delete' review.pk comment.pk %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="댓글삭제">
+  </form>
+  {% endfor %}
+
+  <form action="{% url 'reviews:comment_create' review.pk %}" method="post">
+    {% csrf_token %}
+    {{ comment_form }}
+    <input type="submit" value="댓글작성">
+  </form>
+
+  
+
   <form action="{% url 'reviews:delete' review.pk %}" method="POST">
     {% csrf_token %}
     <button class='btn btn-primary' type="submit">삭제</button>
   </form>
   <a class='btn btn-primary' href="{% url 'reviews:update' review.pk %}">수정</a>
+  <form action=""></form>
 {% endblock content %}

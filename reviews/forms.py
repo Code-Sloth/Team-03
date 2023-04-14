@@ -1,5 +1,5 @@
 from django import forms
-from .models import Review
+from .models import Review, Comment
 from imagekit.forms import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
@@ -22,3 +22,13 @@ class ReviewForm(forms.ModelForm):
         self.fields['content'].widget.attrs['class'] = 'form-control'
         self.fields['movie'].widget.attrs['class'] = 'form-control'
         self.fields['image'].widget.attrs['class'] = 'form-control'
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('content',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['content'].widget.attrs['class'] = 'form-control'
