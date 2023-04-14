@@ -6,7 +6,7 @@ from imagekit.processors import ResizeToFill
 class ReviewForm(forms.ModelForm):
     image = ProcessedImageField(
         spec_id='reviews:image',
-        processors=[ResizeToFill(100,100)],
+        processors=[ResizeToFill(60,86)],
         format='JPEG',
         options={'quality' : 90},
         required=False,
