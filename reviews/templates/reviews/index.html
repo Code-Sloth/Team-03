@@ -2,8 +2,10 @@
 
 {% block content %}
   <h1>index</h1>
-
+  <hr>
+  <a href="{% url 'reviews:create' %}">Create</a>
   {% for review in reviews %}
     <a href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a>
   {% endfor %}
+
 {% endblock content %}

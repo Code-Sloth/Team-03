@@ -16,9 +16,9 @@ class Review(models.Model):
     updated_time = models.DateTimeField(auto_now_add=True)
 
     def delete(self, *args, **kargs):
-      if self.image:
-          os.remove(os.path.join(settings.MEDIA_ROOT, self.image.path))
-      super(Review, self).delete(*args, **kargs)
+        if self.image:
+            os.remove(os.path.join(settings.MEDIA_ROOT, self.image.path))
+        super(Review, self).delete(*args, **kargs)
 
     def save(self, *args, **kwargs):
         if self.id:

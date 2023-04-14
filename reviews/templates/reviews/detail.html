@@ -14,5 +14,9 @@
   </div>
   <p>{{ review.created_time }}</p>
   <p>{{ review.updated_time }}</p>
-
+  <form action="{% url 'reviews:delete' review.pk %}" method="POST">
+    {% csrf_token %}
+    <button class='btn btn-primary' type="submit">삭제</button>
+  </form>
+  <a class='btn btn-primary' href="{% url 'reviews:update' review.pk %}">수정</a>
 {% endblock content %}
